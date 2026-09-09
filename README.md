@@ -5,15 +5,18 @@ Norway (SSB) trade data and a live Norges Bank exchange rate feed to
 examine Norwegian exports to the United States after the U.S. imposed a
 12.5% additional tariff on Norwegian goods on 24 July 2026.
 
-**Read the write-up:** [`case-study.qmd`](case-study.qmd) (render with
-Quarto, or read the rendered `case-study.html` once published via GitHub
-Pages). Alternatively, read [`case-study.pdf`](case-study.pdf).
+**Read the write-up:** [birktyssebotn.github.io/norus-tariffs-case](https://birktyssebotn.github.io/norus-tariffs-case/)
+
+Alternatively, read [`case-study.pdf`](case-study.pdf), or render
+[`case-study.qmd`](case-study.qmd) yourself with Quarto.
 
 ## Repository structure
 
 ```
 .
-├── case-study.qmd                    # the standalone write-up (render this)
+├── case-study.qmd                    # source (renders to index.html)
+├── index.html                        # rendered output, published via GitHub Pages
+├── case-study.pdf                    # static PDF version
 ├── scripts/
 │   ├── 00_helpers.R                  # shared SSB parsing + STL decomposition
 │   ├── 01_wrangle_exports.R          # US exports -> tidy CSV
@@ -54,7 +57,7 @@ Three SSB extracts, same commodity/exports settings unless noted:
    `00_helpers.R` automatically. `05` requires an internet connection at
    run time, since it queries Norges Bank directly.
 3. Render `case-study.qmd` (in RStudio: **Render**; from the terminal:
-   `quarto render case-study.qmd`).
+   `quarto render case-study.qmd`). This produces `index.html`.
 
 ## Tools
 
