@@ -1,0 +1,350 @@
+---
+title: "Norway's Exports to the U.S., and What the New Tariff Puts at Stake"
+subtitle: "A short applied data-analysis case study"
+author: "Birk Tyssebotn"
+date: today
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-tools: true
+    theme: cosmo
+    fig-width: 8
+    fig-height: 5
+execute:
+  warning: false
+  message: false
+---
+
+## Background
+
+In late July 2026, the United States imposed an additional 12.5% tariff on
+Norwegian goods, replacing the temporary 10% global tariff that expired on
+24 July 2026. The U.S. justified the higher rate under a Section 301
+investigation into forced labour in global supply chains. The Norwegian
+government has publicly rejected that justification.[^1]
+
+[^1]: Norwegian Ministry of Foreign Affairs, "The US introduces a new
+tariff rate on goods from Norway," 28 July 2026,
+<https://www.regjeringen.no/en/whats-new/the-us-introduces-a-new-tariff-rate-on-goods-from-norway/id3169293/>.
+
+The OECD's 2026 Economic Survey of Norway characterizes the country as
+relatively insulated from U.S. trade policy, since the U.S. takes well
+under 4% of Norway's total exports.[^2] The numbers below sit inside that
+picture. While aggregate exposure is low, some industries will, naturally, have greater exposure than others.
+
+[^2]: OECD, *OECD Economic Surveys: Norway 2026*, "Preparing for
+long-term challenges,"
+<https://www.oecd.org/en/publications/oecd-economic-surveys-norway-2026_5cc02644-en/full-report/preparing-for-long-term-challenges_b3a8411e.html>.
+
+The tariff is barely a month old at the time of writing, and SSB's trade
+statistics lag by about a month. There is not yet any meaningful post-tariff data to analyse. Instead of forcing a before/after analysis with lacking data, this case study aims at answering the following questions:
+
+1. **How much**, and from which industries, does Norway export to the U.S.,
+   and how dependent is each industry on the U.S. market?
+2. **How stable is that trade normally**, seasonally and otherwise,
+   before any policy shock, so a future change can be judged against a
+   real baseline?
+3. **How much is actually at stake**: can this new tariff account for meaningful change in exports?
+
+## Data
+
+Source: Statistics Norway (SSB), StatBank Table
+[08806, External trade in goods, by commodity group, country, month and
+imports/exports](https://www.ssb.no/en/statbank/table/08806). Data are
+licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+Industries are classified using the UN's
+[Standard International Trade Classification (SITC)](https://en.wikipedia.org/wiki/Standard_International_Trade_Classification)
+at the 1-digit level. This is broad enough to read at a glance and
+granular enough to show which sectors are exposed to the tariff.
+
+The data consists of three SSB extracts, with same commodity/exports settings, but differing in
+country and time span, plus one exchange rate series pulled live:
+
+| File | Country | Months | Used for |
+|---|---|---|---|
+| `exports_us_monthly.xlsx` | United States | Jan 2025 to present | Main totals, share |
+| `exports_total_monthly.xlsx` | All countries | Jan 2025 to present | US share of Norway's total exports |
+| `exports_us_monthly_long.xlsx` | United States | Jan 2018 to present | Seasonal baseline |
+
+The exchange rate series (NOK per USD, monthly average) is pulled
+directly from Norges Bank's open data API, series `EXR/M.USD.NOK.SP`, at
+render time, rather than from a downloaded file. It reflects whatever
+Norges Bank has published as of whenever the script last ran.
+
+Tidied in [`scripts/00_helpers.R`](scripts/00_helpers.R) (shared parsing
+logic) and [`scripts/01_wrangle_exports.R`](scripts/01_wrangle_exports.R),
+[`02_wrangle_share_of_total.R`](scripts/02_wrangle_share_of_total.R),
+[`03_wrangle_seasonal.R`](scripts/03_wrangle_seasonal.R),
+[`05_wrangle_exchange_rate.R`](scripts/05_wrangle_exchange_rate.R).
+
+```{r}
+#| label: load
+
+library(tidyverse)
+library(scales)
+
+data_exports <- read_csv("data/processed/exports_us_tidy.csv", show_col_types = FALSE)
+share_of_total <- read_csv("data/processed/exports_us_share_of_total.csv", show_col_types = FALSE)
+us_seasonal <- read_csv("data/processed/exports_us_seasonal.csv", show_col_types = FALSE)
+fx <- read_csv("data/processed/usd_nok_tidy.csv", show_col_types = FALSE)
+
+latest_month <- max(data_exports$date)
+```
+
+## How much does each industry export to the U.S.?
+
+Total exports and export share, most recent 12 months, sorted by value. Although one industry may dominate Norway's total exports to the US, it does not necessarily have a correspondingly large exposure to the US market. More on this below. 
+
+```{r}
+#| label: fig-totals-share
+#| fig-cap: "Norway's exports to the U.S. by industry: value and share, most recent 12 months"
+#| fig-height: 8
+
+library(patchwork)
+
+last_12 <- data_exports %>%
+  filter(date > latest_month %m-% months(12))
+
+totals <- last_12 %>%
+  group_by(industry) %>%
+  summarise(exports_mill_nok = sum(exports_mill_nok), .groups = "drop") %>%
+  mutate(
+    share = exports_mill_nok / sum(exports_mill_nok),
+    industry = fct_reorder(industry, exports_mill_nok)
+  )
+
+p_share <- ggplot(totals, aes(x = share, y = industry)) +
+  geom_col(fill = "lightblue3") +
+  scale_x_continuous(labels = label_percent(), limits = c(0, NA), expand = c(0, 0)) +
+  labs(x = "Share of total exports to the U.S.", y = NULL,
+       title = "Norway's exports to the U.S., by industry") +
+  theme_minimal() +
+  theme(plot.title.position = "plot")
+
+p_value <- ggplot(totals, aes(x = exports_mill_nok, y = industry)) +
+  geom_col(fill = "cadetblue") +
+  scale_x_continuous(labels = label_number(big.mark = " "), n.breaks = 6, expand = c(0, 0)) +
+  labs(x = "Export value (NOK million)", y = NULL,
+       caption = "Source: Statistics Norway, Table 08806. Industry = SITC 1-digit category. Most recent 12 months.") +
+  theme_minimal()
+
+p_share / p_value
+```
+
+## How dependent is each industry on the U.S. market?
+
+A different question from the one above. Instead of "Which industry accounts for the largest share of Norwegian exports to the US?", it is asking "What share of each industry's total exports is going to the US?". It is a reflection of each industry's exposure to the US. 
+
+```{r}
+#| label: fig-dependence
+#| fig-cap: "Share of each industry's total (worldwide) exports that goes to the U.S., most recent 12 months"
+
+dependence <- share_of_total %>%
+  filter(date > latest_month %m-% months(12)) %>%
+  group_by(industry) %>%
+  summarise(
+    exports_us_mill_nok = sum(exports_us_mill_nok),
+    exports_total_mill_nok = sum(exports_total_mill_nok),
+    .groups = "drop"
+  ) %>%
+  mutate(share_of_total = exports_us_mill_nok / exports_total_mill_nok)
+
+ggplot(dependence, aes(x = share_of_total, y = fct_reorder(industry, share_of_total))) +
+  geom_col(fill = "darkorange3") +
+  scale_x_continuous(labels = label_percent(), expand = c(0, 0)) +
+  labs(
+    x = "Share of industry's total (worldwide) exports going to the U.S.",
+    y = NULL,
+    title = "How exposed is each industry to the U.S. market specifically?",
+    caption = "Source: Statistics Norway, Table 08806. Denominator = exports to all countries."
+  ) +
+  theme_minimal() +
+  theme(plot.title.position = "plot")
+```
+
+## How volatile is this trade normally?
+
+Before drawing any conclusion from a future dip or spike, a baseline for
+normal month-to-month variation is needed. Some industries (mineral fuels,
+for instance) move on large one-off shipments even with no policy change
+involved; others (food) are steadier.
+
+The chart marks two dates: **2 April 2025** ("Liberation Day"), when the
+U.S. first announced broad reciprocal tariffs on nearly every country
+including Norway, and **24 July 2026**, the tariff this case study
+covers. The first shows what a tariff shock looks like in this data. The
+second has too few months of data for comparison at the time of writing.
+
+```{r}
+#| label: fig-monthly-trend
+#| fig-cap: "Monthly exports to the U.S. by industry, Jan 2025 to present"
+#| fig-height: 7
+
+tariff_events <- tibble(
+  date = as.Date(c("2025-04-02", "2026-07-24")),
+  label = c("Liberation Day tariffs", "12.5% tariff hike")
+)
+
+ggplot(data_exports, aes(x = date, y = exports_mill_nok)) +
+  geom_line(color = "cadetblue") +
+  geom_point(color = "cadetblue", size = 0.8) +
+  geom_vline(data = tariff_events, aes(xintercept = date), linetype = "dashed", color = "grey40", linewidth = 0.4) +
+  facet_wrap(~ industry, scales = "free_y", labeller = label_wrap_gen(28)) +
+  scale_x_date(date_labels = "%b %y") +
+  labs(
+    x = NULL, y = "Exports (NOK million)",
+    title = "Norway's monthly exports to the U.S., by industry",
+    subtitle = "Dashed lines: 2 Apr 2025 (Liberation Day tariffs) and 24 Jul 2026 (current tariff). Data does not yet cover a meaningful window after the second.",
+    caption = "Source: Statistics Norway, Table 08806."
+  ) +
+  theme_minimal(base_size = 9) +
+  theme(plot.title.position = "plot")
+```
+
+### A seasonally-adjusted baseline
+
+Exports naturally rise and fall by season and vary month to month for reasons that have nothing to do with policy. To judge whether a given month is actually unusual, that ordinary variation has to be removed first, leaving only the part that cannot be explained by any "normal" pattern.
+
+Using nine years of history (2018 to present; fewer years would not
+support a reliable seasonal estimate), each industry's monthly exports
+are decomposed via STL (Seasonal-Trend decomposition using Loess) on the
+log scale into trend, seasonal, and remainder components. The remainder's
+historical standard deviation defines "normal": a month is flagged as
+**out of the normal range** if its remainder exceeds **2 standard
+deviations**, larger than seasonality and typical random variation alone
+would usually produce. "9 Other commodities and transactions" is
+excluded. It is too small and irregular for a meaningful seasonal pattern.
+
+```{r}
+#| label: fig-seasonal
+#| fig-cap: "Actual vs. seasonally expected exports, 2018-present, with out-of-range months flagged"
+#| fig-height: 8
+
+ggplot(us_seasonal, aes(x = date)) +
+  geom_ribbon(
+    aes(
+      ymin = exp(trend + seasonal - 2 * remainder_sd),
+      ymax = exp(trend + seasonal + 2 * remainder_sd)
+    ),
+    fill = "grey85"
+  ) +
+  geom_line(aes(y = expected_mill_nok), color = "grey50", linewidth = 0.3) +
+  geom_line(aes(y = exports_mill_nok), color = "cadetblue", linewidth = 0.4) +
+  geom_point(
+    data = filter(us_seasonal, out_of_normal_range),
+    aes(y = exports_mill_nok), color = "firebrick3", size = 1.2
+  ) +
+  geom_vline(xintercept = as.Date(c("2025-04-02", "2026-07-24")),
+             linetype = "dashed", color = "grey40", linewidth = 0.3) +
+  facet_wrap(~ industry, scales = "free_y", labeller = label_wrap_gen(28)) +
+  labs(
+    x = NULL, y = "Exports (NOK million)",
+    title = "Actual exports vs. the seasonally-expected range",
+    subtitle = "Grey band = normal range (+-2 SD of remainder). Red points = out of that range. Dashed lines: Apr 2025 and Jul 2026 tariff dates.",
+    caption = "Source: Statistics Norway, Table 08806. Method: STL decomposition, log scale, 2018-present."
+  ) +
+  theme_minimal(base_size = 8) +
+  theme(plot.title.position = "plot")
+```
+
+Keep in mind that crossing two standard deviations is not a claim of real-world significance, only that a month's move is statistically larger than that industry's typical noise. It is used here to calibrate expectations: even at the April 2025 tariff shock, only a handful of industries experienced "unusual exports", and only "Food and live animals" in the negative direction. Most shocks do not flag many, let alone every, industry at once.
+
+As stated in the introduction, there is sparse "post-tariff" data available at the time of writing (July is latest as of early September). The following table is basically a binary check of whether the latest month of data is out of normal range or not. As of today, all industries exhibit "normal" exports, but this can be used for future reference as new data is published. 
+
+```{r}
+#| label: tbl-seasonal-latest
+#| tbl-cap: "Status of the most recent available month against each industry's seasonal baseline"
+
+us_seasonal %>%
+  filter(date == max(date)) %>%
+  transmute(
+    Industry = industry,
+    `Actual (NOK mill.)` = round(exports_mill_nok, 0),
+    `Seasonally expected (NOK mill.)` = round(expected_mill_nok, 0),
+    `Out of normal range?` = if_else(out_of_normal_range, "Yes", "No")
+  ) %>%
+  arrange(desc(`Out of normal range?`)) %>%
+  knitr::kable()
+```
+
+## Controlling for the exchange rate
+
+The tariff is not the only thing changing the price of Norwegian goods
+for US buyers. If the krone weakens against the dollar, Norwegian exports
+get cheaper in USD terms, which can offset some of the tariff's effect.
+If the krone strengthens, the opposite happens, and the tariff compounds
+on top of an already-rising USD price.
+
+```{r}
+#| label: fig-exchange-rate
+#| fig-cap: "NOK per 1 USD, monthly average"
+
+fx_start <- fx %>% filter(date == as.Date("2025-01-01")) %>% pull(usd_nok)
+fx_tariff_month <- fx %>% filter(date == as.Date("2026-07-01")) %>% pull(usd_nok)
+fx_latest <- fx %>% filter(date == max(date)) %>% pull(usd_nok)
+fx_change_pct <- (fx_latest - fx_start) / fx_start * 100
+fx_post_tariff_pct <- (fx_latest - fx_tariff_month) / fx_tariff_month * 100
+
+ggplot(fx, aes(x = date, y = usd_nok)) +
+  geom_line(color = "cadetblue", linewidth = 0.5) +
+  geom_vline(xintercept = as.Date(c("2025-04-02", "2026-07-24")),
+             linetype = "dashed", color = "grey40", linewidth = 0.3) +
+  labs(
+    x = NULL, y = "NOK per USD",
+    title = "NOK/USD exchange rate",
+    subtitle = "Dashed lines: Apr 2025 and Jul 2026 tariff dates.",
+    caption = "Source: Norges Bank, series EXR/M.USD.NOK.SP."
+  ) +
+  theme_minimal() +
+  theme(plot.title.position = "plot")
+```
+
+From `r format(as.Date("2025-01-01"), "%B %Y")` to
+`r format(max(fx$date), "%B %Y")` (the most recent month Norges Bank had
+published as of when this was last run), the rate moved from
+`r round(fx_start, 2)` to `r round(fx_latest, 2)` NOK per USD, a change of
+`r round(fx_change_pct, 1)`%. A falling NOK-per-USD rate means the dollar
+buys fewer kroner, which means the krone strengthened over this window.
+That works against Norwegian exporters' USD-denominated competitiveness,
+independent of the tariff.
+
+From the tariff month itself (9.71 NOK per USD) to the latest available month, the change is −2.9%. That is not unusually large: several single-month moves earlier in 2026, unrelated to any tariff, were similar in size or bigger.
+
+
+## Takeaways
+
+Although machinery and transport equipment, and food, account for the largest share of Norway's exports to the US, that reflects the overall size of those industries, not their exposure to US market. Animal and vegetable oils, fats and waxes is small in absolute value, but sends about a quarter of its total exports to the US, the highest share of any industry, and the least able to redirect sales elsewhere if US demand drops.
+
+The April 2025 tariff shock pushed only a few industries outside their normal range, and only Food and live animals moved down. The current increase, from 10% to 12.5%, is smaller than that shock. Over the same period, the krone moved by more than that 2.5 percentage-point difference, for reasons unrelated to the tariff.
+
+If US-bound exports fall in the months ahead, the exchange rate, order timing, and global demand could be just as much to blame as the tariff. 
+
+## Notes on methodology
+
+- **Units:** NOK million, current prices (not inflation-adjusted).
+- **Industry classification:** SITC 1-digit, broad by design, for
+  readability. A finer breakdown (2- or 3-digit SITC) would show whether,
+  for example, farmed salmon specifically drives the seafood category.
+- **"9 Other commodities and transactions"** is excluded from the
+  seasonal analysis. Several months are recorded as zero or suppressed in
+  the source data, and the category is under 0.03% of total exports. It is too sparse and irregular for a seasonal
+  pattern to be meaningful.
+- **Exempt Industries:** The new tariff exempts specific goods, including fuel, fertilizer, some food, and products already covered by separate tariffs (autos, metals, pharmaceuticals). These exemptions are defined at a finer product level than SITC 1-digit, so a category's true exposure may be lower than its total export value suggests, mineral fuels (SITC 3) in particular is exempt outright.
+- **Seasonal baseline method:** STL decomposition on log-transformed
+  monthly exports, `s.window = "periodic"` (assumes a stable seasonal
+  pattern across the 2018-present window rather than one that drifts
+  over time). The 2018-2021 portion includes the COVID trade disruption,
+  which will inflate the estimated "normal" variation for some
+  industries. 
+- **Exchange rate is pulled live, not from a static file.** The
+  `05_wrangle_exchange_rate.R` script queries Norges Bank's API directly
+  at run time (series `EXR/M.USD.NOK.SP`), so `r format(max(fx$date), "%B %Y")`
+  above reflects whatever was published as of the last time the pipeline
+  ran, not a fixed download date. Re-running it later will pick up newer
+  months automatically.
+- **Reproducibility:** re-running `scripts/01_wrangle_exports.R`,
+  `02_wrangle_share_of_total.R`, `03_wrangle_seasonal.R`, and
+  `05_wrangle_exchange_rate.R` after downloading updated extracts
+  regenerates every processed CSV and every figure in this document.

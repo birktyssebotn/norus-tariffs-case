@@ -1,0 +1,191 @@
+industry,date,exports_us_mill_nok,exports_total_mill_nok,share_of_total
+0 Food and live animals,2025-01-01,1495.893,15575.256,0.09604291576331074
+0 Food and live animals,2025-02-01,1644.501,14585.007,0.11275284269661304
+0 Food and live animals,2025-03-01,1857.425,15329.476,0.12116689441961355
+0 Food and live animals,2025-04-01,1388.178,14418.21,0.09627949655331697
+0 Food and live animals,2025-05-01,1362.144,14064.688,0.09684850456689832
+0 Food and live animals,2025-06-01,1044.848,13875.828,0.07529986678993138
+0 Food and live animals,2025-07-01,1101.628,14526.38,0.0758363749261688
+0 Food and live animals,2025-08-01,1076.225,14651.551,0.07345468066827873
+0 Food and live animals,2025-09-01,1268.333,18384.948,0.06898757614109108
+0 Food and live animals,2025-10-01,1368.507,18960.115,0.07217820145078234
+0 Food and live animals,2025-11-01,1107.259,16902.756,0.06550760124561934
+0 Food and live animals,2025-12-01,1229.521,16327.593,0.0753032611726664
+0 Food and live animals,2026-01-01,935.218,15138.737,0.06177648769510957
+0 Food and live animals,2026-02-01,1035.31,14005.723,0.07392049664269384
+0 Food and live animals,2026-03-01,1318.054,15780.602,0.08352368306354853
+0 Food and live animals,2026-04-01,974.817,13753.325,0.07087864207382578
+0 Food and live animals,2026-05-01,989.272,13583.95,0.07282653425550005
+0 Food and live animals,2026-06-01,1005.744,14829.513,0.06782043348287971
+0 Food and live animals,2026-07-01,1047.697,15898.528,0.06589899391943706
+1 Beverages and tobacco,2025-01-01,8.949,108.947,0.08214085748116057
+1 Beverages and tobacco,2025-02-01,14.319,87.491,0.1636625481478095
+1 Beverages and tobacco,2025-03-01,4.92,126.782,0.038806770677225474
+1 Beverages and tobacco,2025-04-01,12.282,109.118,0.11255704833299732
+1 Beverages and tobacco,2025-05-01,4.874,123.053,0.039608948989459825
+1 Beverages and tobacco,2025-06-01,2.038,122.239,0.016672256808383575
+1 Beverages and tobacco,2025-07-01,5.79,115.103,0.05030277229959254
+1 Beverages and tobacco,2025-08-01,3.26,118.582,0.027491524852001147
+1 Beverages and tobacco,2025-09-01,0.863,129.775,0.006649971103833557
+1 Beverages and tobacco,2025-10-01,1.604,129.271,0.01240804202025203
+1 Beverages and tobacco,2025-11-01,5.054,108.344,0.046647714686553945
+1 Beverages and tobacco,2025-12-01,9.46,82.841,0.11419466206347101
+1 Beverages and tobacco,2026-01-01,5.672,115.137,0.04926305184258752
+1 Beverages and tobacco,2026-02-01,1.944,111.109,0.017496332430316175
+1 Beverages and tobacco,2026-03-01,6.035,108.486,0.05562929778957654
+1 Beverages and tobacco,2026-04-01,10.64,98.332,0.10820485701501038
+1 Beverages and tobacco,2026-05-01,13.595,83.693,0.16243891364869226
+1 Beverages and tobacco,2026-06-01,14.283,104.334,0.13689688883777099
+1 Beverages and tobacco,2026-07-01,8.815,96.683,0.09117424986812572
+"2 Crude materials, inedible, except fuels",2025-01-01,23.737,2597.043,0.009140010388738268
+"2 Crude materials, inedible, except fuels",2025-02-01,46.37,2541.573,0.018244606784853318
+"2 Crude materials, inedible, except fuels",2025-03-01,38.555,2993.813,0.012878225861134279
+"2 Crude materials, inedible, except fuels",2025-04-01,241.727,2960.551,0.08164932811493536
+"2 Crude materials, inedible, except fuels",2025-05-01,196.166,2952.723,0.06643562569194604
+"2 Crude materials, inedible, except fuels",2025-06-01,22.389,2523.623,0.008871768881485071
+"2 Crude materials, inedible, except fuels",2025-07-01,199.99,2404.38,0.0831773679701212
+"2 Crude materials, inedible, except fuels",2025-08-01,26.274,2278.174,0.011532920663654312
+"2 Crude materials, inedible, except fuels",2025-09-01,16.015,2572.489,0.006225488233380201
+"2 Crude materials, inedible, except fuels",2025-10-01,184.95,2925.977,0.0632096561251165
+"2 Crude materials, inedible, except fuels",2025-11-01,166.214,2896.682,0.057380823991035265
+"2 Crude materials, inedible, except fuels",2025-12-01,33.596,2398.792,0.014005382709297012
+"2 Crude materials, inedible, except fuels",2026-01-01,40.573,2602.026,0.015592849571833642
+"2 Crude materials, inedible, except fuels",2026-02-01,26.498,2493.803,0.01062553858504461
+"2 Crude materials, inedible, except fuels",2026-03-01,173.104,3024.259,0.057238483873239696
+"2 Crude materials, inedible, except fuels",2026-04-01,16.513,2765.526,0.005971016002019147
+"2 Crude materials, inedible, except fuels",2026-05-01,178.652,2803.285,0.06372951733412764
+"2 Crude materials, inedible, except fuels",2026-06-01,47.249,2955.523,0.015986679853278084
+"2 Crude materials, inedible, except fuels",2026-07-01,196.795,2358.863,0.08342790573254996
+"3 Mineral fuels, lubricants and related materials",2025-01-01,2409.978,124055.05,0.01942668194483014
+"3 Mineral fuels, lubricants and related materials",2025-02-01,852.415,113534.314,0.007507994455315068
+"3 Mineral fuels, lubricants and related materials",2025-03-01,514.984,101433.159,0.005077077408187593
+"3 Mineral fuels, lubricants and related materials",2025-04-01,567.094,89199.924,0.00635756147056807
+"3 Mineral fuels, lubricants and related materials",2025-05-01,764.779,85466.147,0.008948326639786394
+"3 Mineral fuels, lubricants and related materials",2025-06-01,1280.187,82532.738,0.0155112629366543
+"3 Mineral fuels, lubricants and related materials",2025-07-01,753.132,92737.577,0.008121109310414697
+"3 Mineral fuels, lubricants and related materials",2025-08-01,1027.53,87526.799,0.01173960446102913
+"3 Mineral fuels, lubricants and related materials",2025-09-01,778.668,75886.43,0.010260964970944081
+"3 Mineral fuels, lubricants and related materials",2025-10-01,461.847,86229.694,0.0053560088013300845
+"3 Mineral fuels, lubricants and related materials",2025-11-01,202.188,83506.748,0.002421217504482392
+"3 Mineral fuels, lubricants and related materials",2025-12-01,94.71,85290.544,0.0011104396285712516
+"3 Mineral fuels, lubricants and related materials",2026-01-01,176.303,100312.609,0.0017575357849580007
+"3 Mineral fuels, lubricants and related materials",2026-02-01,253.329,82841.612,0.003057992159785592
+"3 Mineral fuels, lubricants and related materials",2026-03-01,1085.44,133525.724,0.008129070320562351
+"3 Mineral fuels, lubricants and related materials",2026-04-01,0.686,125972.156,5.445647846179596e-6
+"3 Mineral fuels, lubricants and related materials",2026-05-01,768.636,107456.417,0.007153002319070437
+"3 Mineral fuels, lubricants and related materials",2026-06-01,2011.916,103018.198,0.01952971454616203
+"3 Mineral fuels, lubricants and related materials",2026-07-01,943.322,120332.495,0.007839295611713195
+"4 Animal and vegetable oils, fats and waxes",2025-01-01,148.024,532.286,0.278091101400375
+"4 Animal and vegetable oils, fats and waxes",2025-02-01,77.089,439.174,0.1755317937764986
+"4 Animal and vegetable oils, fats and waxes",2025-03-01,125.862,513.848,0.2449401379396242
+"4 Animal and vegetable oils, fats and waxes",2025-04-01,120.015,405.471,0.2959891089621699
+"4 Animal and vegetable oils, fats and waxes",2025-05-01,129.332,445.036,0.2906101978266927
+"4 Animal and vegetable oils, fats and waxes",2025-06-01,121.772,439.989,0.27676146449115774
+"4 Animal and vegetable oils, fats and waxes",2025-07-01,81.833,403.965,0.2025744804624163
+"4 Animal and vegetable oils, fats and waxes",2025-08-01,83.776,376.005,0.2228055477985665
+"4 Animal and vegetable oils, fats and waxes",2025-09-01,122.505,565.483,0.21663781227729217
+"4 Animal and vegetable oils, fats and waxes",2025-10-01,131.425,562.1,0.23381070983810712
+"4 Animal and vegetable oils, fats and waxes",2025-11-01,123.342,465.179,0.2651495445839129
+"4 Animal and vegetable oils, fats and waxes",2025-12-01,113.607,415.514,0.2734131701940247
+"4 Animal and vegetable oils, fats and waxes",2026-01-01,97.453,468.701,0.20792146805746092
+"4 Animal and vegetable oils, fats and waxes",2026-02-01,128.492,407.321,0.3154563599716194
+"4 Animal and vegetable oils, fats and waxes",2026-03-01,150.835,492.539,0.3062397089367543
+"4 Animal and vegetable oils, fats and waxes",2026-04-01,95.82,505.723,0.1894713113700583
+"4 Animal and vegetable oils, fats and waxes",2026-05-01,122.972,496.737,0.24755957377847831
+"4 Animal and vegetable oils, fats and waxes",2026-06-01,169.879,641.265,0.26491232173906265
+"4 Animal and vegetable oils, fats and waxes",2026-07-01,100.717,524.299,0.19209840186611077
+5 Chemicals and related products n.e.s.,2025-01-01,632.253,7871.973,0.08031696755057469
+5 Chemicals and related products n.e.s.,2025-02-01,536.01,6869.848,0.07802356034660446
+5 Chemicals and related products n.e.s.,2025-03-01,651.438,7653.768,0.08511337160990508
+5 Chemicals and related products n.e.s.,2025-04-01,664.844,7470.012,0.08900173118865139
+5 Chemicals and related products n.e.s.,2025-05-01,515.368,6738.064,0.07648606483998965
+5 Chemicals and related products n.e.s.,2025-06-01,640.025,7089.907,0.09027269328074401
+5 Chemicals and related products n.e.s.,2025-07-01,619.73,6293.586,0.09847009320282586
+5 Chemicals and related products n.e.s.,2025-08-01,394.947,6953.434,0.056798842126063176
+5 Chemicals and related products n.e.s.,2025-09-01,503.705,6769.285,0.07441036978056027
+5 Chemicals and related products n.e.s.,2025-10-01,528.479,7343.511,0.07196543996461638
+5 Chemicals and related products n.e.s.,2025-11-01,377.588,6561.453,0.05754640016471961
+5 Chemicals and related products n.e.s.,2025-12-01,471.528,6494.836,0.07260044749397829
+5 Chemicals and related products n.e.s.,2026-01-01,282.602,7045.272,0.040112290909421235
+5 Chemicals and related products n.e.s.,2026-02-01,496.251,6676.832,0.07432432027644248
+5 Chemicals and related products n.e.s.,2026-03-01,493.802,7842.805,0.06296242224561238
+5 Chemicals and related products n.e.s.,2026-04-01,530.873,7105.775,0.07471007736664897
+5 Chemicals and related products n.e.s.,2026-05-01,422.125,6766.362,0.06238581382432687
+5 Chemicals and related products n.e.s.,2026-06-01,571.054,7081.495,0.08064031676926976
+5 Chemicals and related products n.e.s.,2026-07-01,348.573,7421.464,0.046968226215204974
+6 Manufactured goods classified chiefly by material,2025-01-01,827.503,11623.41,0.07119279110003003
+6 Manufactured goods classified chiefly by material,2025-02-01,315.694,11528.37,0.02738409679772596
+6 Manufactured goods classified chiefly by material,2025-03-01,744.877,11094.168,0.0671413124445204
+6 Manufactured goods classified chiefly by material,2025-04-01,648.533,11098.417,0.058434729925898446
+6 Manufactured goods classified chiefly by material,2025-05-01,317.407,10516.326,0.03018230891663115
+6 Manufactured goods classified chiefly by material,2025-06-01,327.061,10577.547,0.030920306948293397
+6 Manufactured goods classified chiefly by material,2025-07-01,435.185,9598.56,0.045338571619076194
+6 Manufactured goods classified chiefly by material,2025-08-01,291.958,10551.208,0.02767057572933829
+6 Manufactured goods classified chiefly by material,2025-09-01,364.229,14367.75,0.025350455012093053
+6 Manufactured goods classified chiefly by material,2025-10-01,299.317,10354.7,0.028906390334823798
+6 Manufactured goods classified chiefly by material,2025-11-01,447.562,10081.997,0.044392197299800824
+6 Manufactured goods classified chiefly by material,2025-12-01,367.55,10019.94,0.036681856378381505
+6 Manufactured goods classified chiefly by material,2026-01-01,658.08,10219.743,0.06439300870873171
+6 Manufactured goods classified chiefly by material,2026-02-01,435.374,11484.671,0.03790913993095667
+6 Manufactured goods classified chiefly by material,2026-03-01,530.792,11902.003,0.04459686323386072
+6 Manufactured goods classified chiefly by material,2026-04-01,217.906,11457.313,0.019018944494228272
+6 Manufactured goods classified chiefly by material,2026-05-01,484.41,11648.864,0.0415843124273749
+6 Manufactured goods classified chiefly by material,2026-06-01,527.331,13050.763,0.04040614330365205
+6 Manufactured goods classified chiefly by material,2026-07-01,606.982,11342.278,0.053514999367851854
+7 Machinery and transport equipment,2025-01-01,1215.908,10440.647,0.11645906618622388
+7 Machinery and transport equipment,2025-02-01,1422.407,14952.58,0.09512786422142533
+7 Machinery and transport equipment,2025-03-01,1288.204,11790.552,0.10925731042957107
+7 Machinery and transport equipment,2025-04-01,1068.621,15567.412,0.0686447432623997
+7 Machinery and transport equipment,2025-05-01,1417.446,11955.296,0.11856218365484217
+7 Machinery and transport equipment,2025-06-01,1048.124,19071.911,0.05495642256300378
+7 Machinery and transport equipment,2025-07-01,1049.146,12412.566,0.0845228939769585
+7 Machinery and transport equipment,2025-08-01,6881.644,17024.106,0.4042293909589144
+7 Machinery and transport equipment,2025-09-01,1152.056,11935.517,0.09652334289331581
+7 Machinery and transport equipment,2025-10-01,1365.485,21895.508,0.062363704920662254
+7 Machinery and transport equipment,2025-11-01,1426.126,13110.461,0.10877771574927839
+7 Machinery and transport equipment,2025-12-01,1233.381,12053.489,0.10232564197801981
+7 Machinery and transport equipment,2026-01-01,1113.208,12602.18,0.0883345579891733
+7 Machinery and transport equipment,2026-02-01,837.937,10372.694,0.08078296727928155
+7 Machinery and transport equipment,2026-03-01,1397.58,18177.722,0.07688422124620455
+7 Machinery and transport equipment,2026-04-01,1161.238,10379.643,0.11187648746686182
+7 Machinery and transport equipment,2026-05-01,1129.161,10678.38,0.10574272502008733
+7 Machinery and transport equipment,2026-06-01,1352.864,14694.567,0.0920655913168452
+7 Machinery and transport equipment,2026-07-01,1370.543,11323.092,0.12103964182221603
+8 Miscellaneous manufactured articles,2025-01-01,661.073,4028.486,0.1640996145946641
+8 Miscellaneous manufactured articles,2025-02-01,427.019,3596.682,0.11872581451459985
+8 Miscellaneous manufactured articles,2025-03-01,826.284,4556.858,0.1813275726388665
+8 Miscellaneous manufactured articles,2025-04-01,623.688,4461.713,0.13978666938012374
+8 Miscellaneous manufactured articles,2025-05-01,445.185,4607.338,0.09662520961127663
+8 Miscellaneous manufactured articles,2025-06-01,696.331,4068.406,0.17115573027863984
+8 Miscellaneous manufactured articles,2025-07-01,536.411,4006.338,0.1338906003437553
+8 Miscellaneous manufactured articles,2025-08-01,715.165,3768.437,0.18977761867851312
+8 Miscellaneous manufactured articles,2025-09-01,355.127,4485.042,0.07918030644975008
+8 Miscellaneous manufactured articles,2025-10-01,475.256,4755.043,0.09994778175507561
+8 Miscellaneous manufactured articles,2025-11-01,1120.332,5203.56,0.2153010631183267
+8 Miscellaneous manufactured articles,2025-12-01,601.424,4348.743,0.1382983542600701
+8 Miscellaneous manufactured articles,2026-01-01,440.784,4649.472,0.09480302279484638
+8 Miscellaneous manufactured articles,2026-02-01,353.068,3719.105,0.09493359289398927
+8 Miscellaneous manufactured articles,2026-03-01,405.805,6308.259,0.06432915959855168
+8 Miscellaneous manufactured articles,2026-04-01,536.496,4289.608,0.12506877085272128
+8 Miscellaneous manufactured articles,2026-05-01,628.714,3932.246,0.15988674157211935
+8 Miscellaneous manufactured articles,2026-06-01,710.203,4795.191,0.14810734337798015
+8 Miscellaneous manufactured articles,2026-07-01,502.532,3844.647,0.13070952937942026
+9 Other commodities and transactions,2025-01-01,0.381,234.007,0.0016281564226711166
+9 Other commodities and transactions,2025-02-01,0.074,383.961,1.9272790726141455e-4
+9 Other commodities and transactions,2025-03-01,0.025,299.795,8.339031671642289e-5
+9 Other commodities and transactions,2025-04-01,0.021,415.806,5.050432172695921e-5
+9 Other commodities and transactions,2025-05-01,2.342,378.383,0.0061894958283009545
+9 Other commodities and transactions,2025-06-01,0.035,416.836,8.396587626788474e-5
+9 Other commodities and transactions,2025-07-01,0.399,411.256,9.701986110840937e-4
+9 Other commodities and transactions,2025-08-01,0.012,430.448,2.7877931829164036e-5
+9 Other commodities and transactions,2025-09-01,0.026,430.193,6.0437989460544454e-5
+9 Other commodities and transactions,2025-10-01,0.01,599.543,1.6679370787416417e-5
+9 Other commodities and transactions,2025-11-01,0.018,644.52,2.7927760193632468e-5
+9 Other commodities and transactions,2025-12-01,0.853,554.881,0.001537266549043849
+9 Other commodities and transactions,2026-01-01,0,574.364,0
+9 Other commodities and transactions,2026-02-01,0.031,806.122,3.845571762090602e-5
+9 Other commodities and transactions,2026-03-01,0.016,789.074,2.027693220154257e-5
+9 Other commodities and transactions,2026-04-01,0.261,687.685,3.795342344241914e-4
+9 Other commodities and transactions,2026-05-01,0.112,574.877,1.9482428415121844e-4
+9 Other commodities and transactions,2026-06-01,0.25,549.095,4.5529462114934574e-4
+9 Other commodities and transactions,2026-07-01,0.012,449.282,2.6709282811241048e-5
