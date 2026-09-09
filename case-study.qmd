@@ -5,6 +5,7 @@ author: "Birk Tyssebotn"
 date: today
 format:
   html:
+    output-file: index.html
     toc: true
     code-fold: true
     embed-resources: true
